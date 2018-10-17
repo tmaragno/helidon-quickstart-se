@@ -19,6 +19,6 @@ FROM openjdk:8-jre-alpine
 
 RUN mkdir /app
 COPY target/quickstart-se.jar /app
-COPY libs /app/libs
+COPY target/libs /app/libs
 
 CMD ["java", "-jar", "/app/quickstart-se.jar"]
