@@ -1,13 +1,14 @@
 build:
-  box: ubuntu
+  internal/docker-build:
+    dockerfile: target/Dockerfile
+    image-name: helidon-quickstart-se
+  
   steps:
-    - script:
-        code: echo "hello, world!"
-
-hello-again:
-  box: ubuntu
-  services:
-    - mongo:2.2.7
-  steps:
-    - script:
-        code: echo "hello, again world!"
+    - internal/docker-push:
+        image-name: helidon-quickstart-se
+        working-dir: $WERCKER_ROOT
+        tag: $WERCKER_GIT_COMMIT
+        username: $DOCKER_USERNAME
+        password: $DOCKER_PASSWORD
+        repository: $DOCKER_REPO
+        registry: https://iad.ocir.io/v2
