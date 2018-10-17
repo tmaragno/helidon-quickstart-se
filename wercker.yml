@@ -1,5 +1,4 @@
 build:
-    #box: python:2.7
     internal/docker-build:
         dockerfile: target/Dockerfile
         image-name: helidon-quickstart-se
