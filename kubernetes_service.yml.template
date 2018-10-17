@@ -1,0 +1,20 @@
+# This template file will have its environment variables expanded
+# and the .template extension removed by the bash-template Wercker step.
+# See wercker.yml.
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: quickstart-se
+  labels:
+    app: quickstart-se
+    commit: ${WERCKER_GIT_COMMIT}
+spec:
+  type: LoadBalancer
+  selector:
+    app: quickstart-se
+    commit: ${WERCKER_GIT_COMMIT}
+  ports:
+  - port: 80
+    targetPort: 8090
+  
