@@ -1,4 +1,5 @@
 build:
+  box: ubuntu
   steps:
     - script:
         code: echo "hello, world!"
