@@ -1,7 +1,8 @@
 build:
-  box:
-    id: alpine
-    
+  internal/docker-build:
+    dockerfile: target/Dockerfile
+    image-name: helidon-quickstart-se
+
   steps:
     - script:
         code: echo "hello, world!"
