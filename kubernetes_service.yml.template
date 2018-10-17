@@ -15,6 +15,6 @@ spec:
     app: quickstart-se
     commit: ${WERCKER_GIT_COMMIT}
   ports:
-  - port: 80
+  - port: 30000
     targetPort: 8090
   
