@@ -10,11 +10,12 @@ metadata:
     app: quickstart-se
     commit: ${WERCKER_GIT_COMMIT}
 spec:
-  type: LoadBalancer
+  type: NodePort #Exposes the service as a node port -- old: LoadBalancer
   selector:
     app: quickstart-se
     commit: ${WERCKER_GIT_COMMIT}
   ports:
-  - port: 30000
+  - port: 8090
+    protocol: TCP
     targetPort: 8090
   
