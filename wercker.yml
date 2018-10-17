@@ -1,14 +1,18 @@
 build:
-  internal/docker-build:
-    dockerfile: target/Dockerfile
-    image-name: helidon-quickstart-se
-  
   steps:
-    - internal/docker-push:
-        image-name: helidon-quickstart-se
-        working-dir: $WERCKER_ROOT
-        tag: $WERCKER_GIT_COMMIT
-        username: $DOCKER_USERNAME
-        password: $DOCKER_PASSWORD
-        repository: $DOCKER_REPO
-        registry: https://iad.ocir.io/v2
+    - script:
+        code: echo "hello, world!"
+        
+  #internal/docker-build:
+  #  dockerfile: target/Dockerfile
+  #  image-name: helidon-quickstart-se
+  
+  #steps:
+  #  - internal/docker-push:
+  #      image-name: helidon-quickstart-se
+  #      working-dir: $WERCKER_ROOT
+  #      tag: $WERCKER_GIT_COMMIT
+  #      username: $DOCKER_USERNAME
+  #      password: $DOCKER_PASSWORD
+  #      repository: $DOCKER_REPO
+  #      registry: https://iad.ocir.io/v2
