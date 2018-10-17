@@ -4,7 +4,7 @@ build:
 
   steps:
     - internal/docker-build:
-        dockerfile: target/Dockerfile
+        dockerfile: $WERCKER_ROOT/target/Dockerfile
         image-name: helidon-quickstart-se
   
   #steps:
