@@ -1,0 +1,12 @@
+build:
+  steps:
+    - script:
+        code: echo "hello, world!"
+
+hello-again:
+  box: ubuntu
+  services:
+    - mongo:2.2.7
+  steps:
+    - script:
+        code: echo "hello, again world!"
