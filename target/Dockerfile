@@ -18,7 +18,7 @@
 FROM openjdk:8-jre-alpine
 
 RUN mkdir /app
-COPY $WERCKER_ROOT/target/quickstart-se.jar /app
+COPY target/quickstart-se.jar /app
 COPY libs /app/libs
 
 CMD ["java", "-jar", "/app/quickstart-se.jar"]
