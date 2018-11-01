@@ -1,8 +1,14 @@
 build:
   box:
-   id: alpine
-
+   id: maven:3.5.4-jdk-8-alpine
+  
   steps:
+    # Build & Package Microservice Helidon
+    - wercker/maven:
+      goals: clean compile package
+      cache_repo: true
+      version: 3.5.2
+
     # Build Docker image
     - internal/docker-build:
         dockerfile: target/Dockerfile
@@ -13,10 +19,10 @@ build:
         image-name: helidon-quickstart-se
         working-dir: $WERCKER_ROOT
         tag: $WERCKER_GIT_COMMIT
-        username: $DOCKER_USERNAME
-        password: $DOCKER_PASSWORD
-        repository: $DOCKER_REPO
-        registry: https://iad.ocir.io/v2
+        username: $OCIR_USERNAME
+        password: $OCIR_PASSWORD
+        repository: $OCIR_REPO
+        registry: $OCIR_ADDR
 
 deploy-to-kubernetes:
   box:
@@ -46,12 +52,12 @@ deploy-to-kubernetes:
         command: apply -f $WERCKER_OUTPUT_DIR/kubernetes/
 
     # Tell Kubernetes that we're going to wait 60 seconds for the deploy to be successful
-    - kubectl:
-        name: set deployment timeout
-        server: $OKE_MASTER
-        token: $OKE_TOKEN
-        insecure-skip-tls-verify: true
-        command: patch deployment/quickstart-se -p '{"spec":{"progressDeadlineSeconds":60}}'
+    #- kubectl:
+    #    name: set deployment timeout
+    #    server: $OKE_MASTER
+    #    token: $OKE_TOKEN
+    #    insecure-skip-tls-verify: true
+    #    command: patch deployment/quickstart-se -p '{"spec":{"progressDeadlineSeconds":300}}'
 
     # Watch the Kubernetes deployment. Once the pods are considered healthy the step will exit 0
     # If they aren't healthy within 60 seconds, it will exit with a non 0 exit code, and cause the run to fail.
