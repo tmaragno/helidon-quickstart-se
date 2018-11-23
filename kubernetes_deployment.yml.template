@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
       - name: quickstart-se
-        image: ${DOCKER_REPO}:${WERCKER_GIT_COMMIT}
+        image: ${OCIR_REPO}:${WERCKER_GIT_COMMIT}
         ports:
         - name: quickstart-se
           containerPort: 8090
