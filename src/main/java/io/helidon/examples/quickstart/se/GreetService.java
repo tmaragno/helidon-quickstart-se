@@ -72,7 +72,7 @@ public class GreetService implements Service {
      */
     private void getDefaultMessage(final ServerRequest request,
                                    final ServerResponse response) {
-        String msg = String.format("%s %s!", greeting, "All");
+        String msg = String.format("%s %s!", greeting, "CISA");
 
         JsonObject returnObject = Json.createObjectBuilder()
                 .add("message", msg)
